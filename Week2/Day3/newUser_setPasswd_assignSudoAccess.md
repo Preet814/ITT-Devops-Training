@@ -6,7 +6,7 @@ Command to add new user. This command will promt to add password.
 # sudo passwd <user_name>
 
 **Assign sudo access to user:**
-# sudo usermod -aG sudo <username>
+# sudo usermod -aG sudo <user_name>
 
 usermod command is user to modify user's account settings
 
@@ -21,4 +21,4 @@ sudo the group in which the user is added.
 # sudo groupadd <group_name>
 
 **Add user to that group**
-# sudo usermod -aG <groupname> <username>s
+# sudo usermod -aG <group_name> <user_name>

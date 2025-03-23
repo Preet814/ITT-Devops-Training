@@ -42,6 +42,7 @@ Step 4. Create a file and paste the private key. change mod of file to 400 so th
 Step 5. Connect to private subnet EC2 instance from public subnet EC2 instance through SSH.
 
 To check both can access internet use command:
+
 # ping www.google.com
 
 

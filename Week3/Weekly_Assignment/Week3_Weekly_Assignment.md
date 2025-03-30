@@ -28,6 +28,7 @@ Step 10. Select NAT gateway, click on create NAT gateway and choose public subne
 
 Step 11. Update the private route table for internet access through NAT gateway.
 
+![alt text](image.png)
 
 **2. Creating EC2 instance in both public and private subnet.The private subnet instance should only be accessible from the public subnet over SSH. Both instances should be able to communicate to the internet.**
 
@@ -35,26 +36,43 @@ Step 1. Create EC2 instance for public subnet and edit network settings with cre
 
 Step 2. Create EC2 instance for private subnet and edit network settings with created VPC, private subnet in that VPC, Disable auto assign public ip, in security group allow from CIDR IPV4 block of public subnet range and click on launch EC2 instance.
 
+![alt text](image-1.png)
+
 Step 3. Copy private key of private EC2 instance and connect to public EC2 instance using SSH. 
 
 Step 4. Create a file and paste the private key. change mod of file to 400 so that it is read only.
 
+![alt text](image-3.png)
+
 Step 5. Connect to private subnet EC2 instance from public subnet EC2 instance through SSH.
+
+![alt text](image-2.png)
 
 To check both can access internet use command:
 # ping www.google.com
 
+![alt text](image-4.png)
 
 **3. Create Auto Scaling group of EC2 instances and scale in/out based on Average CPU Utilization**
 
-Step 1. Select target group from EC2 service and create target group, select our created VPC and click on create target group.
+Step 1. Select auto scaling group from EC2 service sidebar.
 
-Step 2. create Load balancer with edit security group to allow http internet access and add target group to it.
+Step 2. Click on create ASG and add name, choose launch template or create launch template.
 
-Step 3. Select auto scaling group give name to auto scaling group and attach template to it.
+Step 3. Choose default VPC and availability zone.
 
-Step 4. Select VPC and choose availability zone and then select load balancer from target groups.
+Step 4. Enter the desired, minimum and maximum capacity.
 
-Step 5. Choose desired instance, minimum instance and maximum instance also choose target tracking scaling policy to average CPU utilization.
+![alt text](image-6.png)
 
-Step 6. Select on create auto scaling group.
+Step 5. In automatic scaling choose target tracking group and select average CPU utilization.
+
+![alt text](image-5.png)
+
+Step 6. Click on create auto scaling group.
+
+Now we can see that 2 ec2 instance according to the template have been created.
+
+![alt text](image-7.png)
+
+![alt text](image-8.png)

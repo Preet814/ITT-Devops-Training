@@ -12,6 +12,7 @@ Step 3. Add User name, provide user access to AWS management console by clicking
 
 Step 4. Choose permission option accordingly(assign s3 list bucket policy to it), review and create a user.
 
+![alt text](image-3.png)
 
 Current User permission:
 
@@ -27,6 +28,7 @@ Step 2. Choose trusted entity type (choose AWS account as per assignment).
 
 Step 3. Add permission according to the role (in my case i added an inline policy to start and stop ec2 instances and list all the instances) and add name to the role and policy.
 
+![alt text](image-4.png)
 
 Inline policy attached to my role:
 
@@ -44,7 +46,7 @@ Step 2. Add this policy to user policy and save the changes:
 
 Now to list or start and stop EC2 instances user can switch his role.
 
-4. Add MFA to user
+**4. Add MFA to user**
 
 Step 1. Click on iam user and select the user.
 

@@ -13,6 +13,8 @@ Time Tec CIDR block for IPV4 address range.
 
 Step 5. Click on create instance.
 
+![alt text](image.png)
+
 **2. Create EBS Volume**
 
 Step 1. On EC2 service page select EBS volume on left side bar and click on create EBS volume.
@@ -23,6 +25,8 @@ only and click on create volume.
 Step 3. Select the EBS volume from EBS dashboard and click on action and select attach volume.
 
 Step 4. Add EC2 instance and device name to EBS volume.
+
+![alt text](image-1.png)
 
 **3. Connect to EC2 instance through powershell**
 
@@ -57,3 +61,5 @@ Step 2. Write command to mount EBS volume to folder
 # sudo mount path_of_EBS_volume path_of_folder
 
 Step 3. Now you can add file and folders to your EBS volume using sudo commands.
+
+![alt text](image-2.png)

@@ -3,7 +3,9 @@
 **1. Create source and destination S3 buckets:**
 
 Step 1. Search S3 from AWS console search bar and click on create bucket.
+
 Step 2. Enter name of bucket "source-demo-s3-lf" and leave all the configurations to default and click on create bucket.
+
 Step 3. Repeat same step for creating destination bucket "destination-s3-demo-lf"
 
 ![alt text](image.png)
@@ -11,7 +13,9 @@ Step 3. Repeat same step for creating destination bucket "destination-s3-demo-lf
 **2. Create an IAM Role for Lambda:**
 
 Step 1. Search IAM from AWS console search bar and click on IAM.
+
 Step 2. Click on create role and choose AWS service as lambda, name the role "s3-copy-demo-role" and click on create role.
+
 Step 3. Add inline policy to the role :
 
 ![alt text](image-1.png)
@@ -25,10 +29,13 @@ Created role:
 **3. Create lambda function:**
 
 Step 1. Select lambda service and click on create function.
+
 Step 2. Add name to the function "s3-copy-demo-function" and choose python language and in permission attach role created.
-Step 4. Add following code in the code and section and click on deploy:
+
+Step 3. Add following code in the code and section and click on deploy:
 
 <>
+
 import json
 import urllib.parse
 import boto3
@@ -61,6 +68,7 @@ def lambda_handler(event, context):
             'statusCode': 500,
             'body': json.dumps("Error copying file")
         }
+
 </>
 
 ![alt text](image-4.png)
@@ -68,7 +76,9 @@ def lambda_handler(event, context):
 **4. Configure S3 trigger:**
 
 Step 1. Click on trigger and add trigger.
+
 Step 2. Select service as S3 and add source bucket name and in suffix section add .jpg for image file only.
+
 Step 3. Create multiple trigger for .png and .jpeg.
 
 ![alt text](image-5.png)

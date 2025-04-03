@@ -3,6 +3,7 @@
 **1. Create an EC2 instance:**
 
 Step 1. Select EC2 service of AWS and click on launch instance.
+
 Step 2. Add name to EC2 instance "Demo" and attach key pair to it and launch an EC2 instance with basic confirguration.
 
 ![alt text](image-4.png)
@@ -10,11 +11,17 @@ Step 2. Add name to EC2 instance "Demo" and attach key pair to it and launch an 
 **2. Create an alarm:**
 
 Step 1. Select Cloudwatch service of AWS and select alarms from left side bar.
+
 Step 2. Click in create alarm and click on select metric.
+
 Step 3. Choose region -> EC2 service -> per-instance metrics -> select row having Demo (instance name) and CPU utilization (metric name) and click on Click on select metric.
+
 Step 4. Add Statistics and Period according to requirement and in condition choose CPU utilization greator then 80% and move next.
+
 Step 5. Select Alarm state trigger - In alarm and click on create SNS topic and add name of topic and mail id of user to whome the alarm is to be sent.
+
 Step 6. The user will receive an email to confirm so user must confirm the email.
+
 Step 7. Add name and description of alarm and click on create alarm.
 
 **3. Connect to EC2 instance and check CPU utilization:**

@@ -1,0 +1,48 @@
+services:
+  mysql-db:
+    image: mysql:latest
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: webapp_db
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypass
+    volumes:
+      - mysql-data-1:/var/lib/mysql
+    networks:
+      - app-network-1
+
+  flask-backend:
+    build:
+      context: ./backend
+    container_name: flask-backend
+    restart: always
+    environment:
+      DB_HOST: mysql-db
+      DB_USER: myuser
+      DB_PASSWORD: mypass
+      DB_NAME: webapp_db
+    depends_on:
+      - mysql-db
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network-1
+
+  nginx-web:
+    image: nginx:latest
+    container_name: nginx-web
+    restart: always
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+    ports:
+      - "8000:80"
+    networks:
+      - app-network-1
+
+volumes:
+  mysql-data-1:
+
+networks:
+  app-network-1:

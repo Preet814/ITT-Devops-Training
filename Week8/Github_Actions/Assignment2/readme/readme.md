@@ -1,4 +1,4 @@
-**Assignment : **
+**Assignment : Use self-hosted runners and configure environment variables & secrets.**
 
 1. Create a self hosted runner.
 

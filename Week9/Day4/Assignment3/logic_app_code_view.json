@@ -1,0 +1,68 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "contentVersion": "1.0.0.0",
+        "triggers": {
+            "Recurrence": {
+                "recurrence": {
+                    "interval": 30,
+                    "frequency": "Day",
+                    "timeZone": "India Standard Time"
+                },
+                "evaluatedRecurrence": {
+                    "interval": 30,
+                    "frequency": "Day",
+                    "timeZone": "India Standard Time"
+                },
+                "type": "Recurrence"
+            }
+        },
+        "actions": {
+            "Compose": {
+                "runAfter": {},
+                "type": "Compose",
+                "inputs": "base64(guid())"
+            },
+            "HTTP": {
+                "runAfter": {
+                    "Compose": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Http",
+                "inputs": {
+                    "uri": "https://demo-key-vault-xyz.vault.azure.net/secrets/demoSecret?api-version=7.4",
+                    "method": "PUT",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "body": {
+                        "value": "@outputs('Compose')"
+                    },
+                    "authentication": {
+                        "type": "ManagedServiceIdentity",
+                        "audience": "https://vault.azure.net"
+                    }
+                },
+                "runtimeConfiguration": {
+                    "contentTransfer": {
+                        "transferMode": "Chunked"
+                    }
+                }
+            }
+        },
+        "outputs": {},
+        "parameters": {
+            "$connections": {
+                "type": "Object",
+                "defaultValue": {}
+            }
+        }
+    },
+    "parameters": {
+        "$connections": {
+            "type": "Object",
+            "value": {}
+        }
+    }
+}

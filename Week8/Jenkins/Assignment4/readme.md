@@ -113,5 +113,32 @@ Later on only it get triggered when i make any change to my code on github
 ![alt text](image-20.png)
 
 
+5. Webhook trigger
 
+Step 1: Create a freestyle job with configuration like SCM - github repo url, Triggers select GitHub hook trigger for GITScm polling and add build step shell.
 
+![alt text](image-21.png)
+
+![alt text](image-22.png)
+
+![alt text](image-23.png)
+
+Step 2: Click on apply and save.
+
+Step 3: Go to github repo > settings > webhook
+
+![alt text](image-24.png)
+
+Step 4: Click on add webhook and add configuration like:
+
+![alt text](image-25.png)
+
+Step 5: Click on add webhook.
+
+![alt text](image-26.png)
+
+Step 6: Now make push any changes to github repo and see the build getting triggered.
+
+![alt text](image-27.png)
+
+![alt text](image-28.png)

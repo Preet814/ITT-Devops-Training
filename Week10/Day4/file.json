@@ -1,0 +1,39 @@
+{
+    "id": 7276,
+    "uid": "73ecce76-eba3-4b9a-92e9-4140cc41be76",
+    "password": "yeWmjaz3FP",
+    "first_name": "Abbie",
+    "last_name": "Hilll",
+    "username": "abbie.hilll",
+    "email": "abbie.hilll@email.com",
+    "avatar": "https://robohash.org/quaeratlaboreipsum.png?size=300x300&set=set1",
+    "gender": "Genderqueer",
+    "phone_number": "+1 (206) 970-5771 x70857",
+    "social_insurance_number": "701079832",
+    "date_of_birth": "1990-04-27",
+    "employment": {
+        "title": "International Consulting Coordinator",
+        "key_skill": "Communication"
+    },
+    "address": {
+        "city": "Torpside",
+        "street_name": "Hahn Trail",
+        "street_address": "7800 Zemlak Cove",
+        "zip_code": "57480-3566",
+        "state": "Alaska",
+        "country": "United States",
+        "coordinates": {
+            "lat": -84.46182841099942,
+            "lng": 28.27549830684822
+        }
+    },
+    "credit_card": {
+        "cc_number": "6771-8945-9939-3063"
+    },
+    "subscription": {
+        "plan": "Essential",
+        "status": "Pending",
+        "payment_method": "Google Pay",
+        "term": "Annual"
+    }
+}

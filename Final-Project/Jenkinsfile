@@ -1,0 +1,108 @@
+pipeline {
+    agent { label 'application-Code-Runner' }
+
+    options {
+        disableConcurrentBuilds()
+    }
+
+    environment {
+        SSH_USER = 'ubuntu'
+        REGION = 'ap-south-1'
+        DB_PORT = '3306'
+    }
+
+    parameters {
+        string(name: 'EC2_IP_1', defaultValue: '13.232.237.205', description: 'IP of EC2 Instance 1')
+        string(name: 'EC2_IP_2', defaultValue: '13.200.155.99', description: 'IP of EC2 Instance 2')
+    }
+
+    stages {
+        stage('Deploy on EC2 Instance 1') {
+            steps {
+                sshagent(['ec2_private_ssh_key']) {
+                    withCredentials([
+                        string(credentialsId: 'AWS_Account_Id', variable: 'AWS_Account_Id'),
+                        string(credentialsId: 'ECR_Repo_Name', variable: 'ECR_Repo_Name'),
+                        string(credentialsId: 'DB_IDENTIFIER', variable: 'DB_IDENTIFIER'),
+                        string(credentialsId: 'DB_HOST', variable: 'DB_HOST'),
+                        string(credentialsId: 'DB_USER', variable: 'DB_USER'),
+                        string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD'),
+                        string(credentialsId: 'DB_NAME', variable: 'DB_NAME')
+                    ]) {
+                        sh """
+                        ssh -o StrictHostKeyChecking=no ${SSH_USER}@${EC2_IP_1} << EOF
+                        echo "Deploying on EC2 Instance 1"
+
+                        aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${AWS_Account_Id}.dkr.ecr.${REGION}.amazonaws.com
+
+                        docker pull ${AWS_Account_Id}.dkr.ecr.${REGION}.amazonaws.com/${ECR_Repo_Name}:latest
+
+                        if [ \$(docker ps -aq -f name=my-app-instance1) ]; then
+                            echo "Removing existing container my-app-instance1"
+                            docker rm -f my-app-instance1
+                        else
+                            echo "Container my-app-instance1 does not exist, skipping removal"
+                        fi
+
+                        docker run --name my-app-instance1 -d -p 5000:5000 \\
+                            -e DB_HOST=${DB_IDENTIFIER}.${DB_HOST} \\
+                            -e DB_USER=${DB_USER} \\
+                            -e DB_PASSWORD=${DB_PASSWORD} \\
+                            -e DB_NAME=${DB_NAME} \\
+                            -e DB_PORT=${DB_PORT} \\
+                            ${AWS_Account_Id}.dkr.ecr.${REGION}.amazonaws.com/${ECR_Repo_Name}
+
+                        echo "Health check on EC2 Instance 1:"
+                        curl -s http://localhost:5000 || echo "App not responding"
+EOF
+                        """
+                    }
+                }
+            }
+        }
+
+        stage('Deploy on EC2 Instance 2') {
+            steps {
+                sshagent(['ec2_private_ssh_key']) {
+                    withCredentials([
+                        string(credentialsId: 'AWS_Account_Id', variable: 'AWS_Account_Id'),
+                        string(credentialsId: 'ECR_Repo_Name', variable: 'ECR_Repo_Name'),
+                        string(credentialsId: 'DB_IDENTIFIER', variable: 'DB_IDENTIFIER'),
+                        string(credentialsId: 'DB_HOST', variable: 'DB_HOST'),
+                        string(credentialsId: 'DB_USER', variable: 'DB_USER'),
+                        string(credentialsId: 'DB_PASSWORD', variable: 'DB_PASSWORD'),
+                        string(credentialsId: 'DB_NAME', variable: 'DB_NAME')
+                    ]) {
+                        sh """
+                        ssh -o StrictHostKeyChecking=no ${SSH_USER}@${EC2_IP_2} << EOF
+                        echo "Deploying on EC2 Instance 2"
+
+                        aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${AWS_Account_Id}.dkr.ecr.${REGION}.amazonaws.com
+
+                        docker pull ${AWS_Account_Id}.dkr.ecr.${REGION}.amazonaws.com/${ECR_Repo_Name}:latest
+
+                        if [ \$(docker ps -aq -f name=my-app-instance2) ]; then
+                            echo "Removing existing container my-app-instance2"
+                            docker rm -f my-app-instance2
+                        else
+                            echo "Container my-app-instance2 does not exist, skipping removal"
+                        fi
+
+                        docker run --name my-app-instance2 -d -p 5000:5000 \\
+                            -e DB_HOST=${DB_IDENTIFIER}.${DB_HOST} \\
+                            -e DB_USER=${DB_USER} \\
+                            -e DB_PASSWORD=${DB_PASSWORD} \\
+                            -e DB_NAME=${DB_NAME} \\
+                            -e DB_PORT=${DB_PORT} \\
+                            ${AWS_Account_Id}.dkr.ecr.${REGION}.amazonaws.com/${ECR_Repo_Name}
+
+                        echo "Health check on EC2 Instance 2:"
+                        curl -s http://localhost:5000 || echo "App not responding"
+EOF
+                        """
+                    }
+                }
+            }
+        }
+    }
+}

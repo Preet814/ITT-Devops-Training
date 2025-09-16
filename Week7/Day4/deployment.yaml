@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: nginx-pod
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        name: nginx-pod
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "100m"
+          limits:
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  labels:
+    name: nginx-service
+spec:
+  selector:
+    name: nginx-pod
+  ports:
+  - port: 80
+    targetPort: 80

@@ -1,0 +1,9 @@
+Steps to add more files in staging area and committing to move changes from the staging area and pushing those changes to the main repository :
+
+1) Clone the github repository
+2) Create new branch using git branch branch-name
+3) Switch to new branch using git checkout branch-name
+4) Create files as per requirement
+5) Stage the file using git add file-name 
+6) Commit to track the files using git commit -m "message"
+7) Push the changes to github using git push origin new-branch-name 

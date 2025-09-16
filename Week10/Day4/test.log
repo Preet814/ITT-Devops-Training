@@ -1,0 +1,6 @@
+2025-05-22 13:28:02,297 - INFO - File path received: file.json
+2025-05-22 13:28:03,301 - INFO - Response Taken from URL.
+2025-05-22 13:28:03,317 - INFO - Data successfully written to JSON file: file.json
+2025-05-22 13:35:50,042 - INFO - Response Taken from URL.
+2025-05-22 13:35:50,063 - INFO - Data successfully written to CSV file: test_output.csv
+2025-05-22 13:35:50,082 - INFO - Data successfully written to JSON file: test_output.json

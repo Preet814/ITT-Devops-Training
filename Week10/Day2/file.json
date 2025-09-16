@@ -1,0 +1,39 @@
+{
+    "id": 7083,
+    "uid": "eea75a95-37c6-4675-bad0-371e77065943",
+    "password": "dvAywkVEj0",
+    "first_name": "Florentino",
+    "last_name": "Hayes",
+    "username": "florentino.hayes",
+    "email": "florentino.hayes@email.com",
+    "avatar": "https://robohash.org/nonporroea.png?size=300x300&set=set1",
+    "gender": "Agender",
+    "phone_number": "+242 296.184.7181 x081",
+    "social_insurance_number": "106087596",
+    "date_of_birth": "2006-10-29",
+    "employment": {
+        "title": "Hospitality Consultant",
+        "key_skill": "Networking skills"
+    },
+    "address": {
+        "city": "Davidtown",
+        "street_name": "Cassin Lakes",
+        "street_address": "604 Malisa Camp",
+        "zip_code": "54363",
+        "state": "Alaska",
+        "country": "United States",
+        "coordinates": {
+            "lat": -2.0865432483041246,
+            "lng": 153.92996078798325
+        }
+    },
+    "credit_card": {
+        "cc_number": "4117624398812"
+    },
+    "subscription": {
+        "plan": "Premium",
+        "status": "Active",
+        "payment_method": "Credit card",
+        "term": "Full subscription"
+    }
+}

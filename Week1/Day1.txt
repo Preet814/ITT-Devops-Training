@@ -1,0 +1,26 @@
+Steps to setup git into visual studio code:
+
+1) Installing vs code and git 
+
+2) Check for get version in cmd using git --version command
+
+3) Login with github using git commands :
+
+    git config –global user.name “YourUserNameOnGithub”
+
+    git config –global user.email “YourEmail”
+
+
+Steps to push the sample code:
+
+1) Clone the repository using git clone command
+
+2) Check status for the repository using git status
+
+3) Create sample file in the cloned repository
+
+4) Now use git add "filename" to add the file to the repository
+
+5) Commit the changes using git commit command
+
+6) push the changes to the main branch of repository using git push origin main command.

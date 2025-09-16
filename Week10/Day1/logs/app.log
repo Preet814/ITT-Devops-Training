@@ -1,0 +1,3 @@
+2025-05-22 11:12:13,785 - INFO - Logger Initialized
+2025-05-22 11:12:13,785 - INFO - Successfully read config from config.json
+2025-05-22 11:12:13,785 - INFO - Config file content: [{'app_name': 'PreetLoggerApp', 'version': '1.0.0', 'debug': True, 'database': {'host': 'localhost', 'port': 5432, 'username': 'admin', 'password': 'secret'}, 'features': {'enable_auth': True, 'max_users': 100}, 'log_level': 'INFO'}, {'app_name': 'PreetLoggerApp', 'version': '1.0.0', 'debug': True, 'database': {'host': 'localhost', 'port': 5432, 'username': 'admin', 'password': 'secret'}, 'features': {'enable_auth': True, 'max_users': 100}, 'log_level': 'INFO'}]
